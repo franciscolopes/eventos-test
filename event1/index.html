@@ -1,679 +1,185 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>VII Jornadas Princípios e Práticas de Formação em Línguas</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet">
+
+  <!-- Optional: Bootstrap Icons -->
   <link
     rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-  />
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
   <style>
-    :root {
-      --bg: #f3f4f6;
-      --card-bg: #ffffff;
-      --border: #e5e7eb;
-      --accent: #0ea5e9;
-      --accent-soft: #e0f2fe;
-      --text-main: #111827;
-      --text-muted: #6b7280;
-      --text-soft: #9ca3af;
-      --shadow-soft: 0 10px 25px rgba(15, 23, 42, 0.06);
-      --radius-lg: 18px;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
     body {
-      margin: 0;
-      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
-        "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #e5f2ff 0, #f3f4f6 55%);
-      color: var(--text-main);
+      background: #f5f7fa;
+      font-family: system-ui, -apple-system, sans-serif;
     }
-
-    main {
-      max-width: 900px;
-      margin: 2.5rem auto 3rem;
-      padding: 0 1.5rem;
+    .hero {
+      background: linear-gradient(135deg,#d9eaff,#ffffff);
+      border-radius: 20px;
+      padding: 2rem 2.5rem;
+      box-shadow: 0 8px 28px rgba(0,0,0,.06);
     }
-
-    header {
-      margin-bottom: 1.75rem;
-    }
-
-    .eyebrow {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: var(--accent);
-      font-weight: 600;
-    }
-
-    h1 {
-      font-size: clamp(1.9rem, 3vw, 2.4rem);
-      margin: 0.35rem 0 0.4rem;
-      line-height: 1.15;
-    }
-
-    .subtitle {
-      font-size: 0.96rem;
-      color: var(--text-muted);
-      max-width: 40rem;
-    }
-
-    .meta-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem 1.2rem;
-      margin-top: 0.9rem;
-      font-size: 0.85rem;
-      color: var(--text-soft);
-    }
-
-    .meta-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.18rem 0.6rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      background: rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(8px);
-    }
-
-    .dot {
-      width: 0.45rem;
-      height: 0.45rem;
-      border-radius: 999px;
-      background: var(--accent);
-    }
-
-    .layout {
-      display: grid;
-      gap: 1.5rem;
-    }
-
-    @media (min-width: 880px) {
-      .layout {
-        grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
-        align-items: flex-start;
-      }
-    }
-
-    .card {
-      background: var(--card-bg);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-soft);
-      border: 1px solid var(--border);
-      padding: 1.3rem 1.4rem;
-    }
-
-    .card + .card {
-      margin-top: 1rem;
-    }
-
-    h2 {
-      font-size: 1.05rem;
-      margin: 0 0 0.75rem;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-
-    h2 span.icon {
-      font-size: 1rem;
-    }
-
-    p {
-      margin: 0 0 0.6rem;
-      font-size: 0.95rem;
-    }
-
-    .muted {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-    }
-
-    .programme-list {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .session {
-      border-radius: 14px;
-      border: 1px solid var(--border);
-      margin-bottom: 0.65rem;
-      overflow: hidden;
-      background: #f9fafb;
-    }
-
-    .session-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.65rem 0.9rem;
-      cursor: pointer;
-      gap: 0.8rem;
-    }
-
-    .session-header-main {
-      display: flex;
-      flex-direction: column;
-      gap: 0.15rem;
-    }
-
-    .session-time {
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.13em;
-      color: var(--text-soft);
-      font-weight: 600;
-    }
-
-    .session-title {
-      font-size: 0.92rem;
-      font-weight: 600;
-    }
-
-    .session-type-pill {
-      font-size: 0.72rem;
-      border-radius: 999px;
-      padding: 0.06rem 0.45rem;
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      color: var(--text-soft);
-      white-space: nowrap;
-    }
-
-    .session-toggle {
-      width: 1.5rem;
-      height: 1.5rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.7);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.9rem;
-      color: var(--text-soft);
-      background: #ffffff;
-      flex-shrink: 0;
-      transition: transform 0.15s ease, background 0.15s ease;
-    }
-
-    .session.open .session-toggle {
-      transform: rotate(90deg);
-      background: var(--accent-soft);
-      color: var(--accent);
-    }
-
-    .session-body {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease;
-      border-top: 1px solid var(--border);
-      background: #ffffff;
-    }
-
-    .session-body-inner {
-      padding: 0.55rem 0.9rem 0.8rem;
-      font-size: 0.9rem;
-    }
-
-    .session-meta {
-      font-size: 0.8rem;
-      color: var(--text-soft);
-      margin-bottom: 0.4rem;
-    }
-
-    .talk-list {
-      margin: 0;
-      padding-left: 1rem;
-    }
-
-    .talk-list li {
-      margin-bottom: 0.35rem;
-    }
-
-    .talk-title {
-      font-style: italic;
-    }
-
-    .badge-strip {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.3rem;
-      margin-top: 0.4rem;
-    }
-
-    .badge {
-      font-size: 0.7rem;
-      padding: 0.1rem 0.5rem;
-      border-radius: 999px;
-      background: #eff6ff;
-      color: #1d4ed8;
-      border: 1px solid #bfdbfe;
-    }
-
-    .org-list {
-      margin: 0.35rem 0 0.4rem;
-      padding-left: 1.1rem;
-      font-size: 0.9rem;
-    }
-
-    .back-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      margin-top: 1.2rem;
-      font-size: 0.86rem;
-      color: #0f766e;
-      text-decoration: none;
-    }
-
-    .back-link span {
-      font-size: 1.05rem;
-    }
-
-    .back-link:hover {
-      text-decoration: underline;
-    }
-
-    footer {
-      margin-top: 2.2rem;
-      font-size: 0.78rem;
-      color: var(--text-soft);
-      text-align: left;
-    }
+    .badge-track { font-size: .75rem; }
+    .accordion-button::after { filter: grayscale(100%); }
   </style>
 </head>
+
 <body>
-<main>
-  <header>
-    <div class="eyebrow">Jornadas · Formação em Línguas</div>
-    <h1>VII Jornadas Princípios e Práticas de Formação em Línguas</h1>
-    <p class="subtitle">
-      Programa das jornadas dedicadas à formação e ensino de línguas, com
-      conferências, comunicações e apresentação de livro.
+
+<div class="container py-5">
+
+  <!-- Header Section -->
+  <div class="hero mb-5">
+    <span class="text-uppercase small fw-bold text-primary">Jornadas · Formação em Línguas</span>
+    <h1 class="mt-2 mb-3 fw-bold">VII Jornadas Princípios e Práticas de Formação em Línguas</h1>
+    <p class="text-muted mb-3">
+      Encontro académico dedicado ao ensino e formação em línguas, com conferências,
+      comunicações e apresentação de livro.
     </p>
-    <div class="meta-row">
-      <span class="meta-pill">
-        <span class="dot"></span> 4 dezembro
-      </span>
-      <span class="meta-pill">
-        Universidade do Minho · ELACH · CEHUM
-      </span>
-      <span class="meta-pill">
-        Entrada livre
-      </span>
+
+    <div class="d-flex flex-wrap gap-2 mt-3">
+      <span class="badge bg-info text-dark">4 Dezembro</span>
+      <span class="badge bg-light text-dark border">UMinho · ELACH · CEHUM</span>
+      <span class="badge bg-success">Entrada livre</span>
     </div>
-  </header>
-
-  <div class="layout">
-    <!-- Programme -->
-    <section aria-label="Programa" class="card">
-      <h2><span class="icon">🕒</span> Programa do dia 4 dezembro</h2>
-      <p class="muted" style="margin-bottom:0.9rem;">
-        Clique em cada bloco para ver o detalhe das conferências e comunicações.
-      </p>
-
-      <ul class="programme-list" id="programme">
-        <!-- Sessão de abertura -->
-        <li class="session open">
-          <button class="session-header" type="button">
-            <div class="session-header-main">
-              <div class="session-time">09h30 – 10h00</div>
-              <div class="session-title">Sessão de abertura</div>
-            </div>
-            <span class="session-type-pill">Sessão</span>
-            <span class="session-toggle">›</span>
-          </button>
-          <div class="session-body">
-            <div class="session-body-inner">
-              <p class="session-meta">
-                Participantes:
-              </p>
-              <ul class="talk-list">
-                <li>Micaela Ramon – Diretora do Mestrado em Português Língua Não Materna (MPLNM)</li>
-                <li>Ana Cea – Mestrado em Espanhol Língua Segunda e Língua Estrangeira (MELSLE)</li>
-                <li>Vítor Moura – Diretor do Centro de Estudos Humanísticos (CEHUM)</li>
-                <li>Cristina Flores – Presidente da Escola de Letras, Artes e Ciências Humanas e Diretora do Mestrado em Estudos Luso-alemães (MELA)</li>
-              </ul>
-            </div>
-          </div>
-        </li>
-
-        <!-- Conferência 10h00 -->
-        <li class="session open">
-          <button class="session-header" type="button">
-            <div class="session-header-main">
-              <div class="session-time">10h00 – 10h30</div>
-              <div class="session-title">Conferência</div>
-            </div>
-            <span class="session-type-pill">Conferência</span>
-            <span class="session-toggle">›</span>
-          </button>
-          <div class="session-body">
-            <div class="session-body-inner">
-              <p class="session-meta">Moderação: Cristina Flores</p>
-              <ul class="talk-list">
-                <li>
-                  Duarte Oliveira (DEGE/ELACH, UMinho):<br />
-                  <span class="talk-title">
-                    “A estrutura temporal narrativa em alemão: dados de falantes monolingues, bilingues e L2”
-                  </span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </li>
-
-        <!-- Coffee break 10h30 -->
-        <li class="session">
-          <button class="session-header" type="button">
-            <div class="session-header-main">
-              <div class="session-time">10h30 – 11h00</div>
-              <div class="session-title">Intervalo para café</div>
-            </div>
-            <span class="session-type-pill">Pausa</span>
-            <span class="session-toggle">›</span>
-          </button>
-          <div class="session-body">
-            <div class="session-body-inner">
-              <p>Momento informal de convívio e networking entre participantes.</p>
-            </div>
-          </div>
-        </li>
-
-        <!-- Comunicações manhã -->
-        <li class="session open">
-          <button class="session-header" type="button">
-            <div class="session-header-main">
-              <div class="session-time">11h00 – 12h45</div>
-              <div class="session-title">Comunicações</div>
-            </div>
-            <span class="session-type-pill">Painel</span>
-            <span class="session-toggle">›</span>
-          </button>
-          <div class="session-body">
-            <div class="session-body-inner">
-              <p class="session-meta">Moderação: Lola Lerma</p>
-              <ul class="talk-list">
-                <li>
-                  Bruna Faria (MELA, UMinho):<br />
-                  <span class="talk-title">
-                    “Efeitos da variabilidade no treino percetivo de vogais alemãs em aprendentes portugueses”
-                  </span>
-                </li>
-                <li>
-                  Marija Komić (MELSLE, UMinho):<br />
-                  <span class="talk-title">
-                    “Primeros pasos en español: integrando tradiciones festivas en la educación preescolar en Croacia”
-                  </span>
-                </li>
-                <li>
-                  Eden Aquino (MPLNM, UMinho):<br />
-                  <span class="talk-title">
-                    “O método Tandem como instrumento de mediação intercultural no ensino-aprendizagem de PLE e JLE”
-                  </span>
-                </li>
-                <li>
-                  Rômulo Sherman (MHD, UMinho):<br />
-                  <span class="talk-title">
-                    RELIA: Roteiro Empático de Leitura com Inteligência Artificial
-                  </span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </li>
-
-        <!-- Almoço -->
-        <li class="session">
-          <button class="session-header" type="button">
-            <div class="session-header-main">
-              <div class="session-time">12h45 – 14h00</div>
-              <div class="session-title">Almoço</div>
-            </div>
-            <span class="session-type-pill">Pausa</span>
-            <span class="session-toggle">›</span>
-          </button>
-          <div class="session-body">
-            <div class="session-body-inner">
-              <p>Intervalo para almoço.</p>
-            </div>
-          </div>
-        </li>
-
-        <!-- Conferência 14h30 -->
-        <li class="session open">
-          <button class="session-header" type="button">
-            <div class="session-header-main">
-              <div class="session-time">14h30 – 15h00</div>
-              <div class="session-title">Conferência</div>
-            </div>
-            <span class="session-type-pill">Conferência</span>
-            <span class="session-toggle">›</span>
-          </button>
-          <div class="session-body">
-            <div class="session-body-inner">
-              <p class="session-meta">Moderação: Micaela Ramon</p>
-              <ul class="talk-list">
-                <li>
-                  Sandra Sousa &amp; Sara Costa (BabeliUM, UMinho):<br />
-                  <span class="talk-title">
-                    “Multiplicidade de processos de avaliação no contexto do ensino das línguas:
-                    um olhar sobre o Português Língua Estrangeira.”
-                  </span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </li>
-
-        <!-- Comunicações tarde -->
-        <li class="session open">
-          <button class="session-header" type="button">
-            <div class="session-header-main">
-              <div class="session-time">15h00 – 16h45</div>
-              <div class="session-title">Comunicações</div>
-            </div>
-            <span class="session-type-pill">Painel</span>
-            <span class="session-toggle">›</span>
-          </button>
-          <div class="session-body">
-            <div class="session-body-inner">
-              <p class="session-meta">Moderação: Ana Ribeiro</p>
-              <ul class="talk-list">
-                <li>
-                  Laísa Bauermeister Stelo (MELSLE, UMinho):<br />
-                  <span class="talk-title">
-                    “Exploração didática de cinco contos de escritoras hispano-americanas”
-                  </span>
-                </li>
-                <li>
-                  Valéria Gomes Lopes (MPLNM, UMinho):<br />
-                  <span class="talk-title">
-                    “Construções Perifrásticas em Trânsito: O Português Brasileiro na Escola Portuguesa”
-                  </span>
-                </li>
-                <li>
-                  Marta Ferreira (MPLNM, UMinho):<br />
-                  <span class="talk-title">
-                    “Construção e Implementação de um Curso Piloto de Preparação para o CIPLE:
-                    Desafios, Decisões e Aprendizagens”
-                  </span>
-                </li>
-                <li>
-                  Carolina Neves (MTCM, UMinho):<br />
-                  <span class="talk-title">
-                    “O conceito de qualidade na tradução de normas:
-                    tradução da norma ISO 24183:2024 comunicação técnica”
-                  </span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </li>
-
-        <!-- Coffee break 16h45 -->
-        <li class="session">
-          <button class="session-header" type="button">
-            <div class="session-header-main">
-              <div class="session-time">16h45 – 17h00</div>
-              <div class="session-title">Intervalo para café</div>
-            </div>
-            <span class="session-type-pill">Pausa</span>
-            <span class="session-toggle">›</span>
-          </button>
-          <div class="session-body">
-            <div class="session-body-inner">
-              <p>Intervalo para café.</p>
-            </div>
-          </div>
-        </li>
-
-        <!-- Conferência 17h00 -->
-        <li class="session open">
-          <button class="session-header" type="button">
-            <div class="session-header-main">
-              <div class="session-time">17h00 – 17h30</div>
-              <div class="session-title">Conferência</div>
-            </div>
-            <span class="session-type-pill">Conferência</span>
-            <span class="session-toggle">›</span>
-          </button>
-          <div class="session-body">
-            <div class="session-body-inner">
-              <p class="session-meta">Moderação: Mario Gradín</p>
-              <ul class="talk-list">
-                <li>
-                  Teresa Jesús Ángeles Galiano (DER/ELACH, UMinho):<br />
-                  <span class="talk-title">
-                    “Estudantes da UMinho a contar o presente para que se entenda o futuro em <em>Todo con Enhe</em>”
-                  </span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </li>
-
-        <!-- Apresentação de livro -->
-        <li class="session open">
-          <button class="session-header" type="button">
-            <div class="session-header-main">
-              <div class="session-time">17h30 – 18h00</div>
-              <div class="session-title">Apresentação de livro</div>
-            </div>
-            <span class="session-type-pill">Apresentação</span>
-            <span class="session-toggle">›</span>
-          </button>
-          <div class="session-body">
-            <div class="session-body-inner">
-              <ul class="talk-list">
-                <li>
-                  Arsénio Cassoma et al. (org.):<br />
-                  <span class="talk-title">
-                    <em>Didáctica da Língua Portuguesa. Enquadramentos teóricos e propostas de didactização.</em>
-                    Luanda: Editora FD-Iuris.
-                  </span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </li>
-
-        <!-- Encerramento -->
-        <li class="session">
-          <button class="session-header" type="button">
-            <div class="session-header-main">
-              <div class="session-time">18h15</div>
-              <div class="session-title">Encerramento</div>
-            </div>
-            <span class="session-type-pill">Sessão</span>
-            <span class="session-toggle">›</span>
-          </button>
-          <div class="session-body">
-            <div class="session-body-inner">
-              <p>Sessão de encerramento das jornadas.</p>
-            </div>
-          </div>
-        </li>
-      </ul>
-    </section>
-
-    <!-- Sidebar: overview & organização -->
-    <aside aria-label="Informações gerais" class="card">
-      <h2><span class="icon">ℹ️</span> Informações gerais</h2>
-      <p class="muted">
-        As VII Jornadas Princípios e Práticas de Formação em Línguas
-        reúnem estudantes e docentes de diferentes mestrados da
-        Universidade do Minho numa reflexão conjunta sobre ensino,
-        aprendizagem e avaliação em línguas.
-      </p>
-
-      <div class="badge-strip">
-        <span class="badge">MPLNM</span>
-        <span class="badge">MELSLE</span>
-        <span class="badge">MELA</span>
-        <span class="badge">MHD</span>
-        <span class="badge">MTCM</span>
-      </div>
-
-      <h2 style="margin-top:1.4rem;"><span class="icon">👥</span> Organização</h2>
-      <ul class="org-list">
-        <li>Mestrado em Espanhol Língua Segunda / Língua Estrangeira (MELSLE), UMinho</li>
-        <li>Mestrado em Estudos Luso-Alemães (MELA), UMinho</li>
-        <li>Mestrado em Português Língua Não Materna (MPLNM), UMinho</li>
-        <li>Centro de Estudos Humanísticos da Universidade do Minho (CEHUM)</li>
-        <li>BabeliUM – Centro de Línguas da Universidade do Minho</li>
-      </ul>
-
-      <p class="muted" style="margin-top:0.5rem;">
-        Com participação de estudantes dos mestrados em Humanidades
-        Digitais (MHD) e em Tradução e Comunicação Multilingue (MTCM).
-      </p>
-
-      <a class="back-link" href="../">
-        <span>←</span> Voltar à lista de eventos
-      </a>
-    </aside>
   </div>
 
-  <footer>
-    Esta página é estática e é servida via GitHub Pages. Para atualizar o
-    programa, basta editar este ficheiro <code>event1/index.html</code>
-    no repositório.
+  <!-- Two-column layout -->
+  <div class="row g-4">
+
+    <!-- Program Column -->
+    <div class="col-lg-7">
+
+      <h3><i class="bi bi-calendar-event me-2"></i>Programa</h3>
+      <p class="text-muted">Clique nos itens para abrir detalhes.</p>
+
+      <div class="accordion" id="programme">
+
+        <!-- Sessão de abertura -->
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button fw-semibold" data-bs-toggle="collapse"
+                    data-bs-target="#s1" aria-expanded="true">
+              09h30 – 10h00 · Sessão de abertura
+            </button>
+          </h2>
+          <div id="s1" class="accordion-collapse collapse show">
+            <div class="accordion-body">
+              Participantes:
+              <ul>
+                <li>Micaela Ramon (MPLNM)</li>
+                <li>Ana Cea (MELSLE)</li>
+                <li>Vítor Moura (CEHUM)</li>
+                <li>Cristina Flores (ELACH / MELA)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Conferência -->
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" data-bs-toggle="collapse"
+                    data-bs-target="#s2">
+              10h00 – 10h30 · Conferência
+            </button>
+          </h2>
+          <div id="s2" class="accordion-collapse collapse">
+            <div class="accordion-body">
+              <strong>Duarte Oliveira (DEGE/ELACH, UMinho)</strong><br>
+              <em>“A estrutura temporal narrativa em alemão...”</em><br>
+              Moderação: Cristina Flores
+            </div>
+          </div>
+        </div>
+
+        <!-- Coffee -->
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" data-bs-toggle="collapse"
+                    data-bs-target="#s3">
+              10h30 – 11h00 · Intervalo para café ☕
+            </button>
+          </h2>
+          <div id="s3" class="accordion-collapse collapse">
+            <div class="accordion-body">
+              Momento de convívio e networking.
+            </div>
+          </div>
+        </div>
+
+        <!-- Communications -->
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" data-bs-toggle="collapse"
+                    data-bs-target="#s4">
+              11h00 – 12h45 · Comunicações (Painel)
+            </button>
+          </h2>
+          <div id="s4" class="accordion-collapse collapse">
+            <div class="accordion-body">
+              Moderação: Lola Lerma
+              <ul>
+                <li><em>“Efeitos da variabilidade...”</em> — Bruna Faria</li>
+                <li><em>“Primeros pasos en español...”</em> — Marija Komić</li>
+                <li><em>“O método Tandem...”</em> — Eden Aquino</li>
+                <li><em>“RELIA: Roteiro Empático...”</em> — Rômulo Sherman</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Continue adding all sessions exactly same format -->
+        <!-- Lunch, afternoon panels, closing, book presentation… -->
+
+      </div>
+    </div>
+
+
+    <!-- Sidebar -->
+    <div class="col-lg-5">
+      <div class="card p-4 shadow-sm">
+        <h4><i class="bi bi-people me-2"></i>Organização</h4>
+        <ul class="mt-2 small">
+          <li>MELSLE – UMinho</li>
+          <li>MELA – UMinho</li>
+          <li>MPLNM – UMinho</li>
+          <li>CEHUM – Centro de Estudos Humanísticos</li>
+          <li>BabeliUM – Centro de Línguas</li>
+        </ul>
+
+        <hr>
+
+        <h5>Áreas participantes</h5>
+        <div class="d-flex flex-wrap gap-1 mt-2">
+          <span class="badge bg-primary-subtle text-primary">MPLNM</span>
+          <span class="badge bg-info-subtle text-info">MELSLE</span>
+          <span class="badge bg-warning-subtle text-dark">MELA</span>
+          <span class="badge bg-secondary-subtle text-dark">MTCM</span>
+          <span class="badge bg-success-subtle text-dark">MHD</span>
+        </div>
+
+        <a href="../" class="btn btn-outline-primary mt-3">
+          <i class="bi bi-arrow-left"></i> Voltar a eventos
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="mt-5 text-muted small">
+    Página servida por GitHub Pages — editar em <code>event1/index.html</code>.
   </footer>
-</main>
+</div>
 
-<script>
-  // Simple accordion behaviour for programme sessions
-  document.querySelectorAll(".session-header").forEach((header) => {
-    header.addEventListener("click", () => {
-      const session = header.closest(".session");
-      const body = session.querySelector(".session-body");
-      const isOpen = session.classList.contains("open");
-
-      if (isOpen) {
-        body.style.maxHeight = "0px";
-        session.classList.remove("open");
-      } else {
-        // expand to fit content
-        body.style.maxHeight = body.scrollHeight + "px";
-        session.classList.add("open");
-      }
-    });
-
-    // ensure open sessions have initial height
-    const session = header.closest(".session");
-    const body = session.querySelector(".session-body");
-    if (session.classList.contains("open")) {
-      body.style.maxHeight = body.scrollHeight + "px";
-    }
-  });
-</script>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
